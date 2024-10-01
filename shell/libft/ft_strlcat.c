@@ -14,25 +14,25 @@
 
 size_t ft_strlcat(char *dest, const char *src, size_t size)
 {
-	size_t i;
-	size_t srclen;
-	size_t destlen;
+        size_t  i;
+        size_t  d;
+        size_t  srclen;
+        size_t  destlen;
 
-	destlen = ft_strlen(dest);
-	srclen = ft_strlen(src);
-	i = 0;
-	if (size == 0)
-		return (srclen);
-	if (size <= destlen)
-		return (srclen += destlen); //lonigtud de origen + tamaño de buffer
-	else
-		srclen += destlen;
-	while (src[i] && destlen < (size - 1) && dest != src)
-	{
-	  dest[destlen] = src[i];
-	  i++;
-	  destlen++;  
-	} 
-	dest[destlen] = '\0';
-	return(srclen);
+        destlen = ft_strlen(dest);
+        srclen = ft_strlen(src);
+        if (!dest && size == 0)
+                return (srclen);
+        destlen = d;
+        if (size <= destlen)
+                return (size + srclen);
+        i = 0;
+        while (src[i] && d + 1 < size)
+        {
+          dest[d] = src[i];
+          i++;
+          d++;
+        }
+        dest[d] = '\0';
+        return (destlen + srclen);
 }
