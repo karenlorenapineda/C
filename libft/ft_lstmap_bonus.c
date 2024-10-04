@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 17:35:43 by marvin            #+#    #+#             */
-/*   Updated: 2024/09/24 17:35:43 by marvin           ###   ########.fr       */
+/*   Created: 2024/10/03 10:52:04 by marvin            #+#    #+#             */
+/*   Updated: 2024/10/03 10:52:04 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+t_list	*ft_lstmap_bonus(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	i;
+	t_list	*new;
+	t_list	*node;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	if (!f || !lst)
+		return (NULL);
+	new = NULL;
+	while (lst)
+	{
+		node = ft_lstnew_bonus(f(lst->content));
+		if (!node)
+		{
+			ft_lstclear_bonus(&node, (*del));
+			return (NULL);
+		}
+		ft_lstadd_back_bonus(&new, node);
+		lst = lst->new;
+	}
+	return (new);
 }

@@ -12,27 +12,34 @@
 
 #include "libft.h"
 
-size_t ft_strlcat(char *dest, const char *src, size_t size)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-    size_t i;
-    size_t srclen;
-    size_t destlen;
+	size_t	i;
+	size_t	j;
+	size_t	dest_len;
 
-    destlen = ft_strlen(dest);
-    srclen = ft_strlen(src);
-    i = 0;
-    if (size == 0)
-        return (srclen);
-    if (size <= destlen)
-        return (size += srclen); //lonigtud de origen + tamaño de buffer
-    else
-        srclen += destlen
-    while (src[i] && destlen < size -1 && dest != src)
-    {
-      dest[destlen] = src[i];
-      i++;
-      destlen++;  
-    } 
-    dest[destlen] = '\0';
-    return(srclen);
+	dest_len = ft_strlen(dest);
+	i = 0;
+	if (size <= dest_len)
+		return (size + ft_strlen(src));
+	j = dest_len;
+	while (src[i] && j < size - 1)
+	{
+		dest[j] = src[i];
+		i++;
+		j++;
+	}
+	dest[j] = '\0';
+	return (dest_len + ft_strlen(src));
 }
+/*
+#include <stdio.h>
+
+int	main()
+{
+	char	dest[20] = "Hello,";
+	char	src[] = "world";
+
+	printf("%ld\n", ft_strlcat(dest, src, 9));
+	printf("%s\n",dest);
+}*/

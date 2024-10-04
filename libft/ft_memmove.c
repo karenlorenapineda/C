@@ -12,21 +12,21 @@
 
 #include "libft.h"
 
-void    *ft_memmove(void *dest, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-    unsigned char   *d;
-    unsigned char   *s;
+	unsigned char	*d;
+	unsigned char	*s;
 
-    if (src == NULL && dest == NULL)
-        return (dest);
-    d = (unsigned char *)dest; //iguala punteros al valor de parametros
-    s = (unsigned char *)src;
-    if (d >= s)
-    {
-        while (len--) //tamaño de mi buffer sea distinto de 0
-            d[len] = s[len] //copiar c/elemento a la inversa, evitar overlaping
-    }
-    else
-        ft_memcpy(d, s, len); //copia todos los characters secuencialmente
-    return (dest);
+	if (src == NULL && dest == NULL)
+		return (dest);
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
+	if (d >= s)
+	{
+		while (len--)
+			d[len] = s[len];
+	}
+	else
+		ft_memcpy(d, s, len);
+	return (dest);
 }
